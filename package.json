@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "type": "module",
+  "dev": "nodemon app.js",
   "scripts": {
     "format": "prettier --write *.js **/*.js"
   },
@@ -12,6 +13,7 @@
     "mongoose": "^8.3.5"
   },
   "devDependencies": {
+    "nodemon": "^3.1.0",
     "prettier": "^3.2.5"
   }
 }
