@@ -132,6 +132,11 @@ router.patch("/shop/:productId", async (req, res, next) => {
 
         // 상태 변경
         if (state) {
+            if(state !=="FOR_SALE" && state !=="SOLD_OUT" ){
+              return res
+                .status(400)
+                .json({ errorMessage: "잘못된 상품 데이터입니다." })  
+            }
             const targetProduct = await Product.findOne({ state }).exec()
             if (targetProduct) {
                 targetProduct.state = currentProduct.state
@@ -142,7 +147,7 @@ router.patch("/shop/:productId", async (req, res, next) => {
 
         if (currentProduct.updateDate !== undefined) {
             // 수정일시를 변경합니다.
-            currentProduct.doneAt = new Date()
+            currentProduct.updateDate = new Date()
         }
 
         // 변경된 '상품'을 저장합니다.
